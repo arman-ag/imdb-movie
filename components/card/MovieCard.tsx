@@ -7,16 +7,16 @@ const MovieCard = ({movie}:movieCardTypes) => {
   return (
         <>
          <CardActionArea>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card  sx={{ maxWidth: 300,maxHeight:200}}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt="movie cover"
         height="150px"
         width="100px"
         image={movie?.image}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography  variant="h5" >
           {movie?.title}
         </Typography>
         

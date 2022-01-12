@@ -1,9 +1,9 @@
 import { Container, Grid, Modal } from '@mui/material';
-import { Box } from '@mui/system';
 import { GetServerSideProps } from 'next';
 import React, { useState } from 'react';
 import MovieCard from '../components/card/MovieCard';
 import Layout from '../components/Layout';
+import ModalCard from '../components/modal/ModalCard';
 import { MovieListType, responseType } from '../types';
 const Home = ({moviesList}:MovieListType) => {
   const [open, setOpen] = useState(false);
@@ -28,15 +28,7 @@ const Home = ({moviesList}:MovieListType) => {
   open={open}
   onClose={handleClose}>
 
-    <Box sx={{ position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: "400px",
-  bgcolor: 'background.paper',
-  p: 4,}}>
-     <MovieCard movie={choseMovie} />
-</Box>
+   <ModalCard movie={choseMovie}/>
   </Modal>
    </main>
   )

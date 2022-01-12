@@ -4,11 +4,7 @@ import * as React from "react";
 
 const Footer = () => {
   return (
-    <Box
-      display="felx"
-      justifyContent="center"
-      // style={{ backgroundColor: "#f7b731" }}
-    >
+    <Box display="felx" justifyContent="center" mt={10}>
       <Typography variant="body1" color="inherit" align="center">
         © 2022 Arman-Ag
       </Typography>

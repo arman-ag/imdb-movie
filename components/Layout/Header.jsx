@@ -11,37 +11,27 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import * as React from "react";
-import { ProjectsJob } from "../../pages/api/api";
+import { topMovieList } from "../../pages/api/api";
 import useStyles from "./LayoutStyle";
 const Header = () => {
-  const [searchQuery, setSearchQuery] = React.useState("");
-  const [result, setResults] = React.useState([]);
-  const handleChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-  React.useEffect(() => {
-    ProjectsJob(searchQuery)
-      .then((res) => setResult(res.data.results))
+  const [result, setResult] = React.useState([]);
+
+  React.useEffect(async () => {
+    topMovieList()
+      .then((res) => {
+        setResult(res.data.items);
+      })
       .catch((err) => console.log(err));
-  }, [searchQuery]);
-  const top100Films = [
-    { title: "The Shawshank Redemption", year: 1994 },
-    { title: "The Godfather", year: 1972 },
-    { title: "The Godfather: Part II", year: 1974 },
-    { title: "The Dark Knight", year: 2008 },
-    { title: "12 Angry Men", year: 1957 },
-    { title: "Schindler's List", year: 1993 },
-    { title: "Pulp Fiction", year: 1994 },
-    {
-      title: "The Lord of the Rings: The Return of the King",
-      year: 2003,
-    },
-  ];
+  }, []);
+
   const classes = useStyles();
 
   return (
     <>
-      <AppBar position="static" style={{ backgroundColor: "#4b6584" }}>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: "#4b6584", marginBottom: 50 }}
+      >
         <Toolbar>
           <Box className={classes.imdbBox}>
             <Typography variant="h5" className={classes.heading}>
@@ -53,9 +43,8 @@ const Header = () => {
               <Paper>
                 <Autocomplete
                   freeSolo
-                  id="free-solo-2-demo"
                   disableClearable
-                  options={top100Films.map((option) => option.title)}
+                  options={result?.map((option) => option.title)}
                   renderInput={(params) => (
                     <TextField
                       placeholder="search..."
